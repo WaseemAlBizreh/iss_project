@@ -13,19 +13,19 @@ server_socket.bind((server_ip, server_port))
 server_socket.listen(1)
 print(f"Server is listening on {server_ip}:{server_port}")
 
-# Accept a client connection
+# Accept a client.py connection
 client_socket, client_address = server_socket.accept()
 print(f"Accepted connection from {client_address}")
 
 while True:
-    # Receive a message from the client
+    # Receive a message from the client.py
     message = client_socket.recv(1024).decode()
     if not message:
         break
 
     print(f"Client: {message}")
 
-    # Send a reply to the client
+    # Send a reply to the client.py
     reply = input("You: ")
     client_socket.send(reply.encode())
 
