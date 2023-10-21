@@ -1,7 +1,13 @@
+# Read How to Run File Before run the code
 import socket
+from cryptography.fernet import Fernet
 
-server_ip = '192.168.137.97'
-server_port = 2001
+# this is the key ...
+key = b'P0qB1OOQ9PZEgNUfB0YhaPx4PO_C_VKjxcJ5MMTG3OY='
+cs = Fernet(key)
+# Define the server's IP address and port to connect to
+server_ip = '127.0.0.1'
+server_port = 8000
 
 # Create a socket object
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -19,7 +25,10 @@ print(f"Accepted connection from {client_address}")
 
 while True:
     # Receive a message from the client.py
-    message = client_socket.recv(1024).decode()
+    message = client_socket.recv(1024)
+    print(message)
+    message = cs.decrypt(message)
+    message = message.decode()
     if not message:
         break
 
@@ -27,7 +36,8 @@ while True:
 
     # Send a reply to the client.py
     reply = input("You: ")
-    client_socket.send(reply.encode())
+    reply = cs.encrypt(reply.encode())
+    client_socket.send(reply)
 
 # Close the sockets
 client_socket.close()

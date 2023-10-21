@@ -1,0 +1,17 @@
+1-download cryptography library by typing "pip install cryptography" in the cmd
+
+2-install the library in your interrupter
+
+3-connect two devices to the same network (one is the host,the other is the client)
+
+4-look for the host ip and the port by typing "ipconfig" in the cmd and copy it (it is the ipv4 of the device)
+
+5-Paste the host ip and port in the codes (same both for host and client)
+
+6-Run "main" file on the host device
+
+7-run the "client" file on the secont device
+
+8-make sure to give permission from the firewall for both devices
+
+9-make sure to enable file sharing on puplic network for both devices
